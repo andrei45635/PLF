@@ -40,20 +40,32 @@ add(E, L, P, K, Res) :- not(even(P)), !,
 insert_list([], []).
 insert_list([H1|[H2|T]], Res) :- not(is_list(H1)),
                            is_list(H2),
-                           add(H1, H2, 2, 0, T),
+                           ins_aux1(H1, H2, 2, T),
                            insert_list(T, Res).
 insert_list([H1|[H2|T]], Res) :- insert_list(T, Res), !.
                            
-% empty list
+%empty list
 ins_aux(_, [], _, _, []).
-% if the position is even, add the element and then multiply P by 2 
-% and add a value K which is incremented at every step to get the next position 
+%if the position is even, add the element and then multiply P by 2 
+%and add a value K which is incremented at every step to get the next position 
 ins_aux(E, L, P, K, Res) :- 0 is mod(P, 2), !, 
                          nth1(P, Res, E, L), 
                          P1 is (P*2)+K,
                          K1 is K+1,
                          ins_aux(E, Res, P1, K1, Res).
-% if the position is odd, add the element to the list 
+%if the position is odd, add the element to the list 
 ins_aux(E, L, P, K, Res) :- nth1(P, Res, E, L),
                          P1 is P+1,
                          ins_aux(E, Res, P1, K, Res).
+                              
+                             
+ins_aux1([],_,_,[]).
+ins_aux1([E|Es],X,I,[E,X|Rs]) :-
+    I /\ (I-1) =:= 0,              % I is a power of two
+    !,
+    I1 is I + 1,
+    ins_aux1(Es,X,I1,Rs).
+ins_aux1([E|Es],X,I,[E|Rs]) :-
+    I /\ (I-1) =\= 0,              % I is not a power of two
+    I1 is I + 1,
+    ins_aux1(Es,X,I1,Rs).
