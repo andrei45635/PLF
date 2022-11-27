@@ -20,7 +20,6 @@
         ((null b) nil)
         ((atom b) b)
         ((list (car b)) (append (inv(cdr b)) (list (inv(car b)))))
-        ;((list (car b)) (append (inv(cdr b)) (list (invers(car b)))))
         (t (append (inv (cdr b)) (list (car b))))
     )
 )
@@ -30,5 +29,13 @@
         ((null l) 0)
         ((numberp (car l)) (+ (car l) (suma(cdr l))))
         (t (suma (cdr l)))
+    )
+)
+
+(defun lista_prim(l)
+    (cond
+        ((atom l) l)
+        ((oddp (length l)) (cons (caar l) (lista_prim(cdr l))))
+        (t (lista_prim (cdr l)))
     )
 )
