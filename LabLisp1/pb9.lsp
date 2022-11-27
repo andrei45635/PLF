@@ -7,14 +7,6 @@
     )
 )
 
-(defun invers(l)
-    (cond 
-        ((null l) nil)
-        ((atom l) l)
-        (t (append (invers (cdr l)) (list (car l))))
-    )
-)
-
 (defun inv(b)
     (cond
         ((null b) nil)
@@ -29,6 +21,14 @@
         ((null l) 0)
         ((numberp (car l)) (+ (car l) (suma(cdr l))))
         (t (suma (cdr l)))
+    )
+)
+
+(defun lista_prim_aux(l)
+    (cond
+        ((atom l) nil)
+        ((oddp (length l)) (cons (car l) (apply `append (mapcar `lista_prim_aux(cdr l)))))
+        (t (apply `append (mapcar `lista_prim_aux(cdr l))))
     )
 )
 
