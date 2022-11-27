@@ -34,8 +34,9 @@
 
 (defun lista_prim(l)
     (cond
-        ((atom l) l)
+        ((atom l) nil)
         ((oddp (length l)) (cons (caar l) (lista_prim(cdr l))))
         (t (lista_prim (cdr l)))
     )
 )
+(print (lista_prim '((1 (2 3) 4) (3 (4 5) (6 7)) 8 (9 10 11))))
