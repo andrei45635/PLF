@@ -57,5 +57,5 @@
         ((oddp (length l)) (cons (car l) (lista_prim (cdr l))))
         (t (lista_prim (cdr l)))))
 
-;(print (lista_prim `((1 (2 3) 4 5) (3 (4 5) (6 7)) 8 (9 10 11))))
-;(print (lista_prim `(1 2 (3 (4 5) (6 7)) 8 (9 10 11))))
+(print (lista_prim `((1 (2 3) 4 5) (3 (4 5) (6 7)) 8 (9 10 11))))
+(print (lista_prim `(1 2 (3 (4 5) (6 7)) 8 (9 10 11))))
