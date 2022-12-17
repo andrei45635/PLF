@@ -10,3 +10,13 @@
 (print (sterge 5 `(1 2 (5 (5 (5))) 4 (5 (5)) 5)))
 (print (sterge 4 `(1 2 3 4 4 4 4 4 5)))
 (print (sterge 3 `((1 (2 (3 (3 4 5 (3 (3)))) 3 4) 3 3) 3 (3 3))))
+
+(defun stergere (nr l)
+    (cond
+        ((and (atom l) (equal nr l)) nil)
+        ((and (atom l) (not (equal nr l))) l)
+        (t (mapcar #'(lambda (x) (stergere nr x)) l))))
+
+(print (stergere 5 `(1 2 (5 (5 (5))) 4 (5 (5)) 5)))
+(print (stergere 4 `(1 2 3 4 4 4 4 4 5)))
+(print (stergere 3 `((1 (2 (3 (3 4 5 (3 (3)))) 3 4) 3 3) 3 (3 3))))
