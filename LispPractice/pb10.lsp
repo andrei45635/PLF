@@ -13,3 +13,20 @@
         (t (cons (car l) (cale (caddr l) n)))))
 
 (print (cale `(a (b (c) (d (e))) (f (g))) `e))
+
+;;arbore echilibrat 
+(defun adancime(l)
+    (cond
+        ((null (cdr l)) 0)
+        (t (+ 1 (apply 'max (mapcar #'adancime (cdr l)))))))
+
+(print (adancime'(a (b (c) (d (e))) (f (g)))))
+
+(defun echilibrat (l)
+    (cond
+        ((null l) 0)
+        ((<(- (adancime (cadr l)) (adancime (caddr l))) 1) t)
+        (t nil)))
+
+(print (echilibrat `(a (b (c) (d (e))) (f (g)))))
+(print (echilibrat '(a (b (c) (d (e))) (f (g) (h (i))))))
