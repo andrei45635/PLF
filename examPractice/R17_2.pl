@@ -33,7 +33,7 @@ progA([H1, H2, H3|T], K, N) :- length([H1, H2, H3|T], Lg),
                                progA([H2, H3|T], K, N1).
 progA([H1, H2, H3|T], K, N) :- length([H1, H2, H3|T], Lg),
     						   Lg mod 2 =\= 0, !,
-    						   K1 is (K div 2) + 1,
+    						   K1 is K div 2,
     						   N < K1,
                                H4 is H1 + H3,
                                H4 div 2 =:= H2,
